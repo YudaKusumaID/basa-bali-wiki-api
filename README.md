@@ -36,8 +36,8 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
 
 1. **Clone repositori ini:**
    ```bash
-   git clone https://github.com/username/kamus-bali-api.git
-   cd kamus-bali-api
+   git clone https://github.com/YudaKusumaID/basa-bali-wiki-api.git
+   cd basa-bali-wiki-api
    ```
 
 2. **Instal dependensi proyek:**
@@ -47,7 +47,7 @@ Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah ber
    ```
 
 3. **Konfigurasi Lingkungan (Environment):**
-   Buat file `.env` di direktori root proyek dengan menyalin dari contoh `.env.example` (jika ada) atau buat secara manual.
+   Buat file `.env` di direktori root proyek dengan menyalin dari contoh `.env.example` atau buat secara manual.
    ```env
    # Port untuk menjalankan server
    PORT=8080
