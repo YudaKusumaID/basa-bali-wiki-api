@@ -121,7 +121,30 @@ Mengembalikan objek JSON yang berisi jumlah total kata dan sebuah array besar be
 
 #### `GET /api/v1/indeks/:huruf`
 
-Mengambil daftar semua kata yang diawali dengan huruf tertentu.
+Mengambil daftar semua kata yang diawali dengan huruf tertentu, dengan dukungan pagination.
+
+-   **Parameter Path:**
+    -   `huruf` (string, required): Satu karakter alfabet (A-Z, tidak case-sensitive) untuk memfilter daftar kata.
+
+-   **Query Parameters (Opsional):**
+    -   `page` (number): Nomor halaman yang ingin ditampilkan.
+        -   Default: `1`
+    -   `limit` (number): Jumlah data per halaman.
+        -   Default: `20`
+        -   Maksimum: `100`
+
+-   **Contoh Penggunaan (cURL):**
+    -   **Halaman pertama (default):**
+        ```bash
+        curl "http://localhost:3000/api/v1/indeks/a"
+        ```
+    -   **Halaman kedua dengan 10 item per halaman:**
+        ```bash
+        curl "http://localhost:3000/api/v1/indeks/a?page=2&limit=10"
+        ```
+
+-   **Respons Sukses (200 OK):**
+    Mengembalikan objek JSON yang berisi metadata pagination dan daftar kata untuk halaman tersebut.
 
 **Parameter:**
 - `huruf` (string, required): Satu karakter alfabet (A-Z, tidak case-sensitive) untuk memfilter daftar kata.
@@ -172,29 +195,28 @@ Mengembalikan objek JSON yang berisi daftar kata untuk huruf yang diminta. (Liha
 }
 ```
 
-### Respons Sukses (Daftar Indeks)
+### Respons Sukses (Daftar Indeks dengan Pagination)
 
-**Permintaan:** `GET /api/v1/indeks/a`
+**Permintaan:** `GET /api/v1/indeks/a?page=1&limit=5`
 
 ```json
 {
     "success": true,
     "message": "Daftar kata untuk huruf 'A' berhasil diambil.",
-    "data": {
-        "letter": "A",
-        "count": 822,
-        "words": [
-            "A",
-            "Aa",
-            "Aab",
-            "Aad",
-            "Aag",
-            "Aang",
-            "Aantaran",
-            "Aas",
-            "..."
-        ]
-    }
+    "pagination": {
+        "currentPage": 1,
+        "totalPages": 165,
+        "limit": 5,
+        "totalItems": 822,
+        "itemsOnPage": 5
+    },
+    "data": [
+        "A",
+        "Aa",
+        "Aab",
+        "Aad",
+        "Aag"
+    ]
 }
 ```
 
