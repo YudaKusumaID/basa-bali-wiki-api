@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 // Impor rute
 const wordRoutes = require('./api/routes/word.routes');
@@ -8,6 +9,7 @@ const ApiError = require('./utils/ApiError');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
