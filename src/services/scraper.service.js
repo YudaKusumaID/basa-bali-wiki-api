@@ -37,13 +37,13 @@ async function scrapeWordDefinition(word) {
         $('div.bali-gray:contains("Level of Speech Option") div.bali-item').each((i, el) => {
             const level = $(el).find('div.bali-item__left').clone().children().remove().end().text().trim();
             const text = $(el).find('div.bali-item__right').text().trim();
-            if (text !== '-') scrapedData.speechLevels.push({ level, text });
+            scrapedData.speechLevels.push({ level, text });
         });
 
         $('div.bali-gray:contains("Dialects") div.bali-item').each((i, el) => {
             const dialect = $(el).find('div.bali-item__left').text().trim();
             const text = $(el).find('div.bali-item__right').text().trim();
-            if (text !== '-') scrapedData.dialects.push({ dialect, text });
+            scrapedData.dialects.push({ dialect, text });
         });
 
         $('div.bali-gray:contains("Sentences Example") div.bali-item-group').each((i, el) => {
